@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Period</th>
+      <th scope="col">Value</th>
+      <th scope="col">Status</th>
+      <th scope="col">Unit</th>
+      <th scope="col">Subject</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for transaction in transaction_list %}
+    <tr>
+      <th scope="row">{{ transaction.id }}</th>
+      <td>{{ transaction.period }}</td>
+      <td>{{ transaction.value }}</td>
+      <td>{{ transaction.status }}</td>
+      <td>{{ transaction.unit }}</td>
+      <td>{{ transaction.subject }}</td>
+
+
+      <td>
+        <a href="{{ url_for('admin_transaction_update', transaction_id=transaction.id) }}">Изменить</a> /
+        <a href="{{ url_for('admin_transaction_delete', transaction_id=transaction.id) }}">Удалить</a>
+
+      </td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
